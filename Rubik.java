@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 import Models.*;
-import java.util.Scanner;
+import Algorithms.Solver;
 
 public class Rubik {
     public static void main(String[] args) {
@@ -7,39 +9,48 @@ public class Rubik {
         // 2. Mix Cube
         // 3. Solve and Print solution
         if (args.length == 1 && isValidArgument(args[0])) {
-            if (true) {
-                //if args[0] is int do random mix else do given mix
-                //String[] mix = args[0].split(" ");
                 Cube rubik = new Cube();
                 rubik.showCube();
-                //rubik.mixCube(mix);
-                int mixNumber = 0;
                 try {
-                    mixNumber = Integer.parseInt(args[0]);
+                    int mixNumber = Integer.parseInt(args[0]);
+                    rubik.mixCubeRandom(mixNumber);
                 } catch (Exception e) {
-                    System.out.println("That aint an int chief");
-                    System.exit(0);
+                    rubik.mixCube(args[0].split(" "));
                 }
-                rubik.mixCubeRandom(mixNumber);
                 rubik.showCube();
-            }
-            //Scanner scanner = new Scanner(System.in);           
-            /*
-            while (true) {
-                String input = scanner.nextLine();
-                rubik.makeMove(input);
-                //rubik.displayPieces();
-                rubik.showCube();
-                
-            }
-            */
+                Solver.solve(rubik);
         } else {
             System.out.println("Usage: java Rubik <mix string> or java Rubik <mix move length>");
         }
     }
 
     private static boolean isValidArgument(String arg) {
-        // either an integer or space delimited commands
+        ArrayList <String> validMoves = new ArrayList<String>();
+        String[] validMovesArray = {
+            "F", "F'", "F2",
+            "B", "B'", "B2",
+            "L", "L'", "L2",
+            "R", "R'", "R2",
+            "U", "U'", "U2",
+            "D", "D'", "D2",
+        };
+        for (String move : validMovesArray) {
+            validMoves.add(move);
+        }
+
+        try {
+            int mixNumber = Integer.parseInt(arg);
+            if (mixNumber < 1) {
+                return false;
+            }
+        } catch (Exception e) {
+            String[] mix = arg.split(" ");
+            for (String string : mix) {
+                if (!validMoves.contains(string.trim())) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
     

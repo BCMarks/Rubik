@@ -12,9 +12,11 @@ public class Cube {
         "D", "D'", "D2",
     };
     private ArrayList<Piece> pieces;
+    private ArrayList<String> solution;
 
     public Cube() {
         pieces = new ArrayList<Piece>();
+        solution = new ArrayList<String>();
         for (int i = 1; i < 28 ; i++) {
             if (i == 14) {
                 continue;
@@ -23,16 +25,30 @@ public class Cube {
         }
     }
 
+    public Cube(Cube original) {
+        pieces = new ArrayList<Piece>();
+        solution = new ArrayList<String>();
+        for (String string : original.solution) {
+            solution.add(string);
+        }
+        for (Piece piece : original.getAllPieces()) {
+            pieces.add(new Piece(piece));
+        }
+    }
+
     public void mixCube(String[] mix) {
+        System.out.print("MIX: ");
         for (String string : mix) {
             makeMove(string);
+            System.out.print(string+" ");
         }
-
+        System.out.println("");
     }
 
     public void mixCubeRandom(int length) {
         ArrayList<String> redundantMoves = new ArrayList<String>();
         ArrayList<String> previousMoves = new ArrayList<String>();
+        System.out.print("MIX: ");
         for (int i = 0; i < length; i++) {
             int nextMoveIndex = (int) Math.floor(Math.random() * 17);
             String nextMove = validMoves[nextMoveIndex];
@@ -55,9 +71,9 @@ public class Cube {
             }
             previousMoves.add(nextMove);
             makeMove(nextMove);
-            System.out.println(nextMove);
-            System.out.println("==============");
+            System.out.print(nextMove+" ");
         }
+        System.out.println("");
     }
 
     private ArrayList<String> handleRedundancy(ArrayList<String>  redundantMoves, int remainBanned, int newBanned) {
@@ -74,6 +90,148 @@ public class Cube {
         return redundantMoves;
     }
 
+    public boolean isSolved() {
+        for (Piece piece : pieces) {
+            if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isCrossSolved() {
+        for (Piece piece : pieces) {
+            if (piece.getDesiredPieceNumber() == 8) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 16) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 18) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 26) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isFirstPairSolved() {
+        if (!isCrossSolved()) {
+            return false;
+        }
+
+        for (Piece piece : pieces) {
+            if (piece.getDesiredPieceNumber() == 6) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 9) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isSecondPairSolved() {
+        if (!isCrossSolved()) {
+            return false;
+        }
+
+        for (Piece piece : pieces) {
+            if (piece.getDesiredPieceNumber() == 24) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 27) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isThirdPairSolved() {
+        if (!isCrossSolved()) {
+            return false;
+        }
+
+        for (Piece piece : pieces) {
+            if (piece.getDesiredPieceNumber() == 22) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 25) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isFourthPairSolved() {
+        if (!isCrossSolved()) {
+            return false;
+        }
+
+        for (Piece piece : pieces) {
+            if (piece.getDesiredPieceNumber() == 4) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            } else if (piece.getDesiredPieceNumber() == 7) {
+                if (!piece.inCorrectPosition() || !piece.inCorrectOrientation()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isCornersOrientated() {
+        Piece piece19 = null;
+        Piece piece21 = null;
+        Piece piece1 = null;
+        Piece piece3 = null;
+        for (Piece piece : pieces) {
+            switch (piece.getCurrentPieceNumber()) {
+                case 19:
+                    piece19 = piece;
+                    break;
+                case 21:
+                    piece21 = piece;
+                    break;
+                case 1:
+                    piece1 = piece;
+                    break;
+                case 3:
+                    piece3 = piece;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (piece19.getFace("B").getDesiredSide().equals(piece21.getFace("B").getDesiredSide()) &&
+            piece1.getFace("L").getDesiredSide().equals(piece19.getFace("L").getDesiredSide()) &&
+            piece3.getFace("F").getDesiredSide().equals(piece1.getFace("F").getDesiredSide()) &&
+            piece21.getFace("R").getDesiredSide().equals(piece3.getFace("R").getDesiredSide())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private Piece getPiece(int number) {
         for (Piece piece : pieces) {
             if (piece.getCurrentPieceNumber() == number) {
@@ -82,6 +240,10 @@ public class Cube {
         }
 
         return null;
+    }
+
+    public ArrayList<Piece> getAllPieces() {
+        return pieces;
     }
 
     public void displayPieces() {
@@ -118,6 +280,12 @@ public class Cube {
         System.out.println();
     }
 
+    public void moveSequence(String[] sequence) {
+        for (String move : sequence) {
+            makeMove(move);
+        }
+    }
+    
     public void makeMove(String move) {
         switch (move) {
             case "F":

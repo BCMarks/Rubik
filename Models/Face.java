@@ -11,6 +11,12 @@ public class Face {
         desiredSide = side;
     }
 
+    Face(Face original) {
+        colour = original.getColour();
+        currentSide = original.getCurrentSide();
+        desiredSide = original.getDesiredSide();
+    }
+
     private String setColour(String side) {
         switch (side) {
             case "F":
@@ -44,5 +50,12 @@ public class Face {
 
     public String getDesiredSide() {
         return desiredSide;
+    }
+
+    public boolean isMatch() {
+        if (currentSide.equals(desiredSide)) {
+            return true;
+        }
+        return false;
     }
 }
