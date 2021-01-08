@@ -1,7 +1,6 @@
 package Algorithms;
 
 import java.util.ArrayList;
-
 import Models.Cube;
 import Models.Piece;
 
@@ -35,6 +34,7 @@ public class RubikF2L {
                     break;
             }
         }
+
         // F R 9: as given on website, adjust as needed.
         String sequence = null;
         String sequence2 = null;
@@ -84,12 +84,6 @@ public class RubikF2L {
             dummy.moveSequence(sequence2.split(","));
             moves.append(sequence2);
         }
-        /*
-        System.out.println("AFTER FIRST PAIR INSERT");
-        System.out.println(sequence);
-        System.out.println(sequence2);
-        dummy.showCube();
-        */
 
         // R B 27: y translation
             // NO NEED TO CHECK EDGE 6
@@ -145,13 +139,6 @@ public class RubikF2L {
             moves.append(sequence2);
         }
 
-        /*
-        System.out.println("AFTER SECOND PAIR INSERT");
-        System.out.println(sequence);
-        System.out.println(sequence2);
-        dummy.showCube();
-        */
-
         // B L 25: y2 translation
             // NO NEED TO CHECK EDGES 6 AND 24
 
@@ -206,13 +193,6 @@ public class RubikF2L {
             moves.append(sequence2);
         }
 
-        /*
-        System.out.println("AFTER THIRD PAIR INSERT");
-        System.out.println(sequence);
-        System.out.println(sequence2);
-        dummy.showCube();
-        */
-
         // L F 7: y' translation
             // NO NEED TO CHECK EDGES 6, 24 AND 22
         sequence = null;
@@ -265,13 +245,6 @@ public class RubikF2L {
             dummy.moveSequence(sequence2.split(","));
             moves.append(sequence2);
         }
-
-        /*
-        System.out.println("AFTER FOURTH PAIR INSERT");
-        System.out.println(sequence);
-        System.out.println(sequence2);
-        dummy.showCube();
-        */
         return moves.toString().split(",");
     }
 
@@ -715,29 +688,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /* NO NEED TO CHECK SINCE IT HAS BEEN SOLVED
-            case 6:
-                if (corner.getFace("R").getDesiredSide().equals("R")) {
-                    if (edge.getFace("R").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,R,U,R',U,R,U,R',"; // 2-3 (U' R U) (R' U R) U R'
-                    } else {
-                        moves = "L',U',L,U2,F',U',F,U,F',U2,F,"; // 2-11 (U F' U' F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("R").getDesiredSide().equals("B")) {
-                    if (edge.getFace("R").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,U',R,U,R',U,R,U',R',"; // 3-5 U2 (R U R' U) (R U' R')
-                    } else {
-                        moves = "L',U',L,F',U2,F,U',F',U,F,"; // 3-4 (U' F' U2 F) (U' F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("R").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,R,U2,R',U',R,U2,R',"; // 2-10 (U' R U2 R') (U' R U2 R')
-                    } else {
-                        moves = "L',U',L,U,F',U',F,"; // 1-2 F' U' F
-                    }
-                }
-                break;
-            */
             case 24:
                 if (corner.getFace("R").getDesiredSide().equals("R")) {
                     if (edge.getFace("R").getDesiredSide().equals("R")) {
@@ -914,29 +864,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 6:
-                if (corner.getFace("R").getDesiredSide().equals("R")) {
-                    if (edge.getFace("F").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("R").getDesiredSide().equals("B")) {
-                    if (edge.getFace("F").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("F").getDesiredSide().equals("R")) {
-                        moves = "L',U',L,F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "L',U',L,U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
             case 24:
                 if (corner.getFace("R").getDesiredSide().equals("R")) {
                     if (edge.getFace("R").getDesiredSide().equals("R")) {
@@ -1114,29 +1041,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 24:
-                if (corner.getFace("B").getDesiredSide().equals("B")) {
-                    if (edge.getFace("B").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,R,U,R',U,R,U,R',"; // 2-3 (U' R U) (R' U R) U R'
-                    } else {
-                        moves = "L',U',L,U2,F',U',F,U,F',U2,F,"; // 2-11 (U F' U' F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("B").getDesiredSide().equals("L")) {
-                    if (edge.getFace("B").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,U',R,U,R',U,R,U',R',"; // 3-5 U2 (R U R' U) (R U' R')
-                    } else {
-                        moves = "L',U',L,F',U2,F,U',F',U,F,"; // 3-4 (U' F' U2 F) (U' F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("B").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,R,U2,R',U',R,U2,R',"; // 2-10 (U' R U2 R') (U' R U2 R')
-                    } else {
-                        moves = "L',U',L,U,F',U',F,"; // 1-2 F' U' F
-                    }
-                }
-                break;
-            */
             case 22:
                 if (corner.getFace("B").getDesiredSide().equals("B")) {
                     if (edge.getFace("B").getDesiredSide().equals("B")) {
@@ -1221,29 +1125,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 6:
-                if (corner.getFace("B").getDesiredSide().equals("B")) {
-                    if (edge.getFace("F").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',R,U,R',U,R,U,R',"; // 2-3 (U' R U) (R' U R) U R'
-                    } else {
-                        moves = "L,U',L',U2,F',U',F,U,F',U2,F,"; // 2-11 (U F' U' F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("B").getDesiredSide().equals("L")) {
-                    if (edge.getFace("F").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',U',R,U,R',U,R,U',R',"; // 3-5 U2 (R U R' U) (R U' R')
-                    } else {
-                        moves = "L,U',L',F',U2,F,U',F',U,F,"; // 3-4 (U' F' U2 F) (U' F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("F").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',R,U2,R',U',R,U2,R',"; // 2-10 (U' R U2 R') (U' R U2 R')
-                    } else {
-                        moves = "L,U',L',U,F',U',F,"; // 1-2 F' U' F
-                    }
-                }
-                break;
-            */
             case 4:
                 if (corner.getFace("B").getDesiredSide().equals("B")) {
                     if (edge.getFace("L").getDesiredSide().equals("B")) {
@@ -1315,29 +1196,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 24:
-                if (corner.getFace("B").getDesiredSide().equals("B")) {
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("B").getDesiredSide().equals("L")) {
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L',U',L,F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "L',U',L,U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
             case 22:
                 if (corner.getFace("B").getDesiredSide().equals("B")) {
                     if (edge.getFace("B").getDesiredSide().equals("B")) {
@@ -1422,29 +1280,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 6:
-                if (corner.getFace("B").getDesiredSide().equals("B")) {
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "L,U',L',U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("B").getDesiredSide().equals("L")) {
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "L,U',L',U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("R").getDesiredSide().equals("B")) {
-                        moves = "L,U',L',F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "L,U',L',U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
             case 4:
                 if (corner.getFace("B").getDesiredSide().equals("B")) {
                     if (edge.getFace("L").getDesiredSide().equals("B")) {
@@ -1514,29 +1349,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 22:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("L").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,R,U,R',U,R,U,R',"; // 2-3 (U' R U) (R' U R) U R'
-                    } else {
-                        moves = "L',U',L,U2,F',U',F,U,F',U2,F,"; // 2-11 (U F' U' F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("L").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,U',R,U,R',U,R,U',R',"; // 3-5 U2 (R U R' U) (R U' R')
-                    } else {
-                        moves = "L',U',L,F',U2,F,U',F',U,F,"; // 3-4 (U' F' U2 F) (U' F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("L").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,R,U2,R',U',R,U2,R',"; // 2-10 (U' R U2 R') (U' R U2 R')
-                    } else {
-                        moves = "L',U',L,U,F',U',F,"; // 1-2 F' U' F
-                    }
-                }
-                break;
-            */
             case 4:
                 if (corner.getFace("L").getDesiredSide().equals("L")) {
                     if (edge.getFace("L").getDesiredSide().equals("L")) {
@@ -1621,52 +1433,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 24:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("R").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',R,U,R',U,R,U,R',"; // 2-3 (U' R U) (R' U R) U R'
-                    } else {
-                        moves = "L,U',L',U2,F',U',F,U,F',U2,F,"; // 2-11 (U F' U' F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("R").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',U',R,U,R',U,R,U',R',"; // 3-5 U2 (R U R' U) (R U' R')
-                    } else {
-                        moves = "L,U',L',F',U2,F,U',F',U,F,"; // 3-4 (U' F' U2 F) (U' F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("R").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',R,U2,R',U',R,U2,R',"; // 2-10 (U' R U2 R') (U' R U2 R')
-                    } else {
-                        moves = "L,U',L',U,F',U',F,"; // 1-2 F' U' F
-                    }
-                }
-                break;
-            */
-            /*
-            case 6:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "B,U,B',U',R,U,R',"; // 1-1 R U R'
-                    } else {
-                        moves = "B,U,B',F',U2,F,U,F',U2,F,"; // 2-9 (U F' U2 F) (U F' U2 F)
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "B,U,B',R,U2,R',U,R,U',R',"; // 3-3 (U R U2 R') (U R U' R')
-                    } else {
-                        moves = "B,U,B',U,F',U',F,U',F',U,F,"; // 3-6 U2 (F' U' F U') (F' U F)
-                    }
-                } else { // D
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "B,U,B',U2,R,U,R',U',R,U2,R',"; // 2-12 (U' R U R') (U' R U2 R')
-                    } else {
-                        moves = "B,U,B',F',U',F,U',F',U',F,"; // 2-4 (U F' U') (F U' F') U' F
-                    }
-                }
-                break;
-            */
             default:
                 break;
         }
@@ -1714,29 +1480,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 22:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "L',U',L,U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L',U',L,F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "L',U',L,U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
             case 4:
                 if (corner.getFace("L").getDesiredSide().equals("L")) {
                     if (edge.getFace("L").getDesiredSide().equals("L")) {
@@ -1821,52 +1564,6 @@ public class RubikF2L {
                     }
                 }
                 break;
-            /*
-            case 24:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "L,U',L',U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "L,U',L',U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("B").getDesiredSide().equals("L")) {
-                        moves = "L,U',L',F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "L,U',L',U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
-            /*
-            case 6:
-                if (corner.getFace("L").getDesiredSide().equals("L")) {
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "R',U,R,U,R,U',R',U',F',U,F,"; // 5-1 (U R U' R') (U' F' U F)
-                    } else {
-                        moves = "R',U,R,U2,F',U,F,U,R,U',R',"; // 5-2 (U' F' U F) (U R U' R')
-                    }
-                } else if (corner.getFace("L").getDesiredSide().equals("F")) {
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "R',U,R,F',U,F,U',F',U,F,"; // 5-3 (F' U F) (U' F' U F)
-                    } else {
-                        moves = "R',U,R,U',R,U,R',U',R,U,R',"; // 5-5 (R U R') (U' R U R')
-                    }
-                } else { // D
-                    if (edge.getFace("F").getDesiredSide().equals("L")) {
-                        moves = "R',U,R,F',U',F,U,F',U',F,"; // 5-6 (F' U' F) (U F' U' F) 
-                    } else {
-                        moves = "R',U,R,U',R,U',R',U,R,U',R',"; // 5-4 (R U' R') (U R U' R')
-                    }
-                }
-                break;
-            */
             default:
                 break;
         }

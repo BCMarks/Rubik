@@ -1,7 +1,5 @@
 package Models;
 
-import java.util.ArrayList;
-
 public class Piece {
     private Face frontFace = null;
     private Face backFace = null;

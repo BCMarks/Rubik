@@ -1,7 +1,6 @@
 package Algorithms;
 
 import java.util.ArrayList;
-
 import Models.Cube;
 import Models.Piece;
 
@@ -58,10 +57,6 @@ public class RubikSimplePLL {
         }
         
         dummy.moveSequence(cornerSequence.split(","));
-        /*
-        System.out.println("CORNERS: "+cornerSequence);
-        dummy.showCube();
-        */
         
         String edgeSequence = "";
         if (!dummy.isSolved()) {
@@ -186,16 +181,8 @@ public class RubikSimplePLL {
                 edgeSequence = edgeSequence.concat(finalMove);
             }
         }
-        
-        /*
-        System.out.println("EDGES: "+edgeSequence);
-        dummy.showCube();
-        */
 
         cornerSequence = cornerSequence.concat(edgeSequence);
-        //System.out.println("PLL: "+cornerSequence);
-        //dummy.moveSequence(cornerSequence.split(","));
-        //dummy.showCube();
         return cornerSequence.split(",");
     }
 }

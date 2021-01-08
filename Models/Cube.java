@@ -13,6 +13,7 @@ public class Cube {
     };
     private ArrayList<Piece> pieces;
     private ArrayList<String> solution;
+    private String mix = "";
 
     public Cube() {
         pieces = new ArrayList<Piece>();
@@ -37,18 +38,15 @@ public class Cube {
     }
 
     public void mixCube(String[] mix) {
-        System.out.print("MIX: ");
         for (String string : mix) {
             makeMove(string);
-            System.out.print(string+" ");
+            this.mix = this.mix.concat(string).concat(" ");
         }
-        System.out.println("");
     }
 
     public void mixCubeRandom(int length) {
         ArrayList<String> redundantMoves = new ArrayList<String>();
         ArrayList<String> previousMoves = new ArrayList<String>();
-        System.out.print("MIX: ");
         for (int i = 0; i < length; i++) {
             int nextMoveIndex = (int) Math.floor(Math.random() * 17);
             String nextMove = validMoves[nextMoveIndex];
@@ -71,9 +69,8 @@ public class Cube {
             }
             previousMoves.add(nextMove);
             makeMove(nextMove);
-            System.out.print(nextMove+" ");
+            mix = mix.concat(nextMove).concat(" ");
         }
-        System.out.println("");
     }
 
     private ArrayList<String> handleRedundancy(ArrayList<String>  redundantMoves, int remainBanned, int newBanned) {
@@ -244,6 +241,10 @@ public class Cube {
 
     public ArrayList<Piece> getAllPieces() {
         return pieces;
+    }
+
+    public String getInitialMix() {
+        return mix;
     }
 
     public void displayPieces() {

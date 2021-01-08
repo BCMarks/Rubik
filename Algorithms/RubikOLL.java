@@ -1,7 +1,6 @@
 package Algorithms;
 
 import java.util.ArrayList;
-
 import Models.Cube;
 import Models.Piece;
 
@@ -97,7 +96,6 @@ public class RubikOLL {
     }
 
     private static String edgeCheck(int cornerOrientation) {
-        //System.out.println("corners: "+String.valueOf(cornerOrientation));
         if (piece20.getFace("U").getDesiredSide().equals("U") && piece10.getFace("U").getDesiredSide().equals("U") &&
             piece12.getFace("U").getDesiredSide().equals("U") && piece2.getFace("U").getDesiredSide().equals("U")) {
             // A
